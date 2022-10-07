@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Favourite Player Dapp</title>
+    <style>
+      body {
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: beige;
+      }
+
+      div {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+      }
+
+      button {
+        width: 100%;
+        margin: 10px 0px 5px 0px;
+      }
+
+      #setFavouritePlayer {
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>My Favourite Player</h1>
+
+      <div id="setFavouritePlayer">
+        <input type="text" id="player" />
+        <button onclick="setFavouritePlayer()">Set Favourite player</button>
+      </div>
+
+      <div>
+        <button onclick="getFavouritePlayer()">
+          Show my latest favourite player
+        </button>
+      </div>
+
+      <div>
+        <h1 id="favPlayer">Favourite Player :</h1>
+      </div>
+    </div>
+    <script
+      src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
+      type="application/javascript"
+    ></script>
+    <script>
+      const FavouritePlayerContractAddress =
+        "0xdD237E8573690627474Bf0e19469F82eA0247344";
+      const FavouritePlayerContractABI = [
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "_player",
+              type: "string",
+            },
+          ],
+          name: "setFavouritePlayer",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getFavouritePlayer",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ];
+      let FavouriteContract;
+      let signer;
+
+      const provider = new ethers.providers.Web3Provider(
+        window.ethereum,
+        "goerli"
+      );
+      provider.send("eth_requestAccounts", []).then(() => {
+        provider.listAccounts().then((accounts) => {
+          signer = provider.getSigner(accounts[0]);
+          FavouritePlayerContract = new ethers.Contract(
+            FavouritePlayerContractAddress,
+            FavouritePlayerContractABI,
+            signer
+          );
+        });
+      });
+
+      async function getFavouritePlayer() {
+        const getFavouritePlayerPromise =
+          FavouritePlayerContract.getFavouritePlayer();
+        const favouritePlayer = await getFavouritePlayerPromise;
+        document.getElementById(
+          "favPlayer"
+        ).innerHTML = `Favourite Player : ${favouritePlayer}`;
+      }
+
+      async function setFavouritePlayer() {
+        const favouritePlayer = document.getElementById("player").value;
+        const setFavouritePlayerPromise =
+          FavouritePlayerContract.setFavouritePlayer(favouritePlayer);
+        await setFavouritePlayerPromise;
+      }
+    </script>
+  </body>
+</html>
