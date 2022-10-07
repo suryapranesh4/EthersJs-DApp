@@ -19,5 +19,5 @@ git clone https://github.com/suryapranesh4/EthersJs-DApp.git
 lite-server
 ```
 
-Note : Do compile the solidity file in Remix IDE and use the compiled contract's Address and ABI.
+Note : Do compile the solidity file in Remix IDE and use the compiled contract's Address and ABI. </br>
 In this example, Goerli testnet is used for compiling the contract.
