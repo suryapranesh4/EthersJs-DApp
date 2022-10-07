@@ -2,20 +2,20 @@
 
 **Pre-Requisite :**
 
--Metamask wallet </br>
--Node.js </br>
--Lite server </br>
+-  Metamask wallet </br>
+-  Node.js </br>
+-  Lite server </br>
 
 
 
-To install lite server, use the following command in the project directory
+To install lite server, use the following command in the project directory </br>
    ```npm install -g lite-server```
    
 
 # Quickstart
 
 ```
-git clone https://github.com/suryapranesh4/EthersJs-DApp
+git clone https://github.com/suryapranesh4/EthersJs-DApp.git
 lite-server
 ```
 
