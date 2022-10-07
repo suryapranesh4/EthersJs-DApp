@@ -5,7 +5,10 @@ Pre-Requisite :
 Metamask
 Node.js 
 Lite server
-  To install lite server, use the following command in the project directory
+
+
+
+To install lite server, use the following command in the project directory
    ```npm install -g lite-server```
    
 
