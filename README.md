@@ -1,10 +1,10 @@
 # EthersJs-DApp : Favourite Player ⛹️
 
-Pre-Requisite :
+**Pre-Requisite :**
 
-Metamask
-Node.js 
-Lite server
+-Metamask wallet </br>
+-Node.js </br>
+-Lite server </br>
 
 
 
